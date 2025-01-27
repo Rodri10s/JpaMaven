@@ -8,7 +8,6 @@ public class GetEntityManager {
 
 	private static final String JPA = "projeto-jpa";
 	private static EntityManagerFactory emf;
-	private static EntityManager em;
 
 	public static EntityManager getJpaConnection() {
 
