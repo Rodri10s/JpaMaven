@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import basicas.Cliente;
 
@@ -34,5 +35,27 @@ public class ClienteDao {
 
     public List<Cliente> listarCliente() {
         return em.createQuery("select c from Cliente c", Cliente.class).getResultList();
+    }
+
+    public List<Cliente> buscarCliente(String nome) {
+        TypedQuery<Cliente> query = em.createQuery("select c from Cliente c where c.nome = :name", Cliente.class);
+        query.setParameter("name", nome);
+
+        return query.getResultList();
+    }
+
+    public List<Cliente> buscarPrimeirosCliente(int qtd) {
+        TypedQuery<Cliente> query = em.createQuery("select c from Cliente c", Cliente.class);
+        query.setMaxResults(qtd);
+
+        return query.getResultList();
+    }
+
+    public List<Cliente> buscarCategoria(int id) {
+        TypedQuery<Cliente> query = em.createQuery("select c from Cliente c join c.categoria where c.categora= :id",
+                Cliente.class);
+        query.setParameter("id", id);
+
+        return query.getResultList();
     }
 }
