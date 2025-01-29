@@ -67,9 +67,9 @@ public class Principal {
 		Venda venda2 = new Venda();
 		venda2.setDescricao("em andamento");
 
-		VendaProduto vp1 = new VendaProduto(venda1, produto1);
-		VendaProduto vp2 = new VendaProduto(venda1, produto2);
-		VendaProduto vp3 = new VendaProduto(venda2, produto3);
+		VendaProduto vp1 = new VendaProduto(venda1, produto1,1);
+		VendaProduto vp2 = new VendaProduto(venda1, produto2, 2);
+		VendaProduto vp3 = new VendaProduto(venda2, produto3, 3);
 
 		em.getTransaction().begin();
 		em.persist(produto1);

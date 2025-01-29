@@ -13,12 +13,15 @@ public class VendaProduto implements Serializable {
     @EmbeddedId
     private VendaProdutoPK id = new VendaProdutoPK();
 
+    private int quantidade;
+
     public VendaProduto() {
     }
 
-    public VendaProduto(Venda venda, Produto produto) {
+    public VendaProduto(Venda venda, Produto produto, int quantidade) {
         id.setProduto(produto);
         id.setVenda(venda);
+        this.quantidade = quantidade;
     }
 
     public VendaProdutoPK getId() {
@@ -29,11 +32,20 @@ public class VendaProduto implements Serializable {
         this.id = id;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + quantidade;
         return result;
     }
 
@@ -50,6 +62,8 @@ public class VendaProduto implements Serializable {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
+            return false;
+        if (quantidade != other.quantidade)
             return false;
         return true;
     }
